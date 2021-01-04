@@ -14,7 +14,7 @@ target.highlighter = function () {
   if (config && config.highlighter === false) {
     console.log('Bundling empty highlighter skeleton...');
     'module.exports = {styles:[],engine:{highlightBlock:function(){}}};'.to(
-      'src/remark/highlighter.js',
+      'src/remark/highlighter.js'
     );
     return;
   }
@@ -44,7 +44,7 @@ target.test = function () {
 
 target.lint = function () {
   console.log('Linting...');
-  run('jshint src');
+  // run('jshint src');
 };
 
 target.bundle = function () {
@@ -54,7 +54,7 @@ target.bundle = function () {
   mkdir('-p', 'out');
 
   run('browserify ' + components() + ' src/remark.js').stdout.to(
-    'out/remark.js',
+    'out/remark.js'
   );
 };
 
@@ -89,7 +89,7 @@ target['test-bundle'] = function () {
         })
         .map(function (file) {
           return "require('./" + file + "');";
-        }),
+        })
     )
     .join('\n')
     .to('_tests.js');
@@ -157,7 +157,7 @@ function bundleHighlighter(target) {
   var highlightjs = 'vendor/highlight.js/src/',
     resources = {
       HIGHLIGHTER_STYLES: JSON.stringify(
-        ls(highlightjs + 'styles/*.css').reduce(mapStyle, {}),
+        ls(highlightjs + 'styles/*.css').reduce(mapStyle, {})
       ),
       HIGHLIGHTER_ENGINE: cat(highlightjs + 'highlight.js'),
       HIGHLIGHTER_LANGUAGES: Array.prototype.sort
@@ -185,7 +185,7 @@ function generateBoilerplateSingle(target) {
       cat('out/remark.min.js')
         // highlighter has a ending script tag as a string literal, and
         // that causes early termination of escaped script. Split that literal.
-        .replace('"</script>"', '"</" + "script>"'),
+        .replace('"</script>"', '"</" + "script>"')
     ),
   };
 

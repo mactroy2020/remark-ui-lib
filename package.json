@@ -2,7 +2,8 @@
   "name": "remark",
   "version": "0.15.0",
   "dependencies": {
-    "marked": "0.3.9"
+    "marked": "0.3.9",
+    "prettier": "^2.2.1"
   },
   "repository": {
     "type": "git",
@@ -26,5 +27,8 @@
   },
   "scripts": {
     "test": "node make test"
+  },
+  "prettier": {
+    "singleQuote": true
   }
 }
